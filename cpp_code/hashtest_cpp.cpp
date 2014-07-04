@@ -6,14 +6,6 @@
 #include "sha1.hpp"
 #include "md5.hpp"
 #include "hmac.hpp"
-#include <boost/array.hpp>
-#include <boost/format.hpp>
-
-void hash_disp(std::uint8_t x)
-{
-	using namespace std;
-	cout << setw(2) << setfill('0') << hex << uppercase << (int)x;
-}
 
 // チェックして文字列化して出力
 bool put_check(std::string digest,std::string check)
@@ -34,8 +26,6 @@ bool sha1_test()
 	using namespace std;
 
 	sha1 hasher;
-//	boost::array<uint8_t,sha1::DIGEST_LENGTH> digest;
-//	boost::array<uint8_t,sha1::DIGEST_LENGTH>::iterator it;
 
 	size_t i;
 	string test1("abc");
@@ -50,7 +40,6 @@ bool sha1_test()
 	
 	string digest;
 	hasher.update(test1.c_str(),test1.length());
-//	std::for_each(digest.begin(),digest.end(),hash_disp);	
 	if(! hasher.final(digest))				return false;
 	if(! put_check(digest,chk1))			return false;;
 	
