@@ -75,7 +75,6 @@ bool md5_test()
 	md5 hasher;
 	string digest;
 
-	size_t i;
 	string test1("");
 	string test2("a");
 	string test3("abc");

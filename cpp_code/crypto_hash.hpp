@@ -42,8 +42,8 @@ public:
 	virtual bool final(std::uint8_t* out)=0;
 	virtual bool final(std::string &ostr)=0;
 	
-	inline virtual int get_digest_size()=0;
-	inline virtual int get_block_size()=0;
+	inline virtual std::size_t get_digest_size()=0;
+	inline virtual std::size_t get_block_size()=0;
 	
 	virtual ~crypto_hash(){};
 };

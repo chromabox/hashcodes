@@ -51,9 +51,9 @@ public:
 	virtual bool final(std::uint8_t* out);
 	virtual bool final(std::string &ostr);
 	
-	inline virtual int get_digest_size()
+	inline virtual std::size_t get_digest_size()
 	{	return DIGEST_LENGTH; };
-	inline virtual int get_block_size()
+	inline virtual std::size_t get_block_size()
 	{	return BLOCK_SIZE; };
 	
 private:

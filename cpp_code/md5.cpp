@@ -48,25 +48,25 @@ static inline uint32_t SHIFT(uint32_t a,uint32_t s)
 { return (a<<s|a>>(32-s));	}
 
 
-static inline uint32_t FF(uint32_t &a,uint32_t b,uint32_t c,uint32_t d,uint32_t x,uint32_t t,uint32_t s)
+static inline void FF(uint32_t &a,uint32_t b,uint32_t c,uint32_t d,uint32_t x,uint32_t t,uint32_t s)
 { 
 	a += x+t+((b&c)|(~b&d));
 	a = b+SHIFT(a,s);
 }
 
-static inline uint32_t GG(uint32_t &a,uint32_t b,uint32_t c,uint32_t d,uint32_t x,uint32_t t,uint32_t s)
+static inline void GG(uint32_t &a,uint32_t b,uint32_t c,uint32_t d,uint32_t x,uint32_t t,uint32_t s)
 { 
 	a += x+t+((b&d)|(c&~d));
 	a = b+SHIFT(a,s);
 }
 
-static inline uint32_t HH(uint32_t &a,uint32_t b,uint32_t c,uint32_t d,uint32_t x,uint32_t t,uint32_t s)
+static inline void HH(uint32_t &a,uint32_t b,uint32_t c,uint32_t d,uint32_t x,uint32_t t,uint32_t s)
 {
 	a += x+t+(b^c^d);
 	a =  b+SHIFT(a,s);
 }
 
-static inline uint32_t II(uint32_t &a,uint32_t b,uint32_t c,uint32_t d,uint32_t x,uint32_t t,uint32_t s)
+static inline void II(uint32_t &a,uint32_t b,uint32_t c,uint32_t d,uint32_t x,uint32_t t,uint32_t s)
 {
 	a += x+t+(c^(b|~d));
 	a =  b+SHIFT(a,s);
@@ -202,7 +202,6 @@ void md5::process()
 // ハッシュの結果を出力する。outはDIGEST_LENGTH以上でなければならない
 bool md5::final(std::uint8_t* out)
 {
-	uint64_t big_bit_count;
 	uint32_t i;	
 	uint32_t* dst = reinterpret_cast<uint32_t *>(out);
 	

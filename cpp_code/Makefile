@@ -2,7 +2,7 @@
 CC        = $(CROSS_COMPILE)g++
 STRIP     = $(CROSS_COMPILE)strip
 
-CFLAGS    = -std=gnu++0x
+CFLAGS    = -std=gnu++0x -Wall
 LDFLAGS   =  
 
 TARGET    = hashtest_cpp
