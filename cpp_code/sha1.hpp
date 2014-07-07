@@ -43,23 +43,23 @@ public:
 	virtual ~sha1();
 	
 	virtual bool reset();
-	virtual bool update(const void* data,std::size_t len);
-	virtual bool final(std::uint8_t* out);
+	virtual bool update(const void* data,size_t len);
+	virtual bool final(uint8_t* out);
 	virtual bool final(std::string &ostr);
 
-	inline virtual std::size_t get_digest_size()
+	inline virtual size_t get_digest_size()
 	{	return DIGEST_LENGTH; };
-	inline virtual std::size_t get_block_size()
+	inline virtual size_t get_block_size()
 	{	return BLOCK_SIZE; };
 	
 private:
 	void process();
 	
-	bool			m_corrupted;				// 壊れフラグ
-	std::uint64_t	m_count;					// 総データ長(Byte数)
-	std::size_t		m_ix	;					// Block用Index
-	std::uint32_t	m_hash[DIGEST_LENGTH/4];	// Hash値
-	std::uint8_t	m_blk[BLOCK_SIZE];			// Block
+	bool		m_corrupted;				// 壊れフラグ
+	uint64_t	m_count;					// 総データ長(Byte数)
+	size_t		m_ix	;					// Block用Index
+	uint32_t	m_hash[DIGEST_LENGTH/4];	// Hash値
+	uint8_t		m_blk[BLOCK_SIZE];			// Block
 };
 
 	

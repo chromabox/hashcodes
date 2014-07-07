@@ -36,7 +36,7 @@
 // out:  uint8型の配列
 // size: outの配列長
 // dst:  結果をセットする文字列変数
-void tostring_digest(std::uint8_t* out,std::size_t size,std::string &dst)
+void tostring_digest(uint8_t* out,size_t size,std::string &dst)
 {
 	using namespace std;
 	ostringstream stream;

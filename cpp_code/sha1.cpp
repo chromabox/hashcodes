@@ -193,7 +193,7 @@ void sha1::process()
 }
 
 // ハッシュの結果を出力する。outはDIGEST_LENGTH以上でなければならない
-bool sha1::final(std::uint8_t* out)
+bool sha1::final(uint8_t* out)
 {
 	static const uint8_t padding[BLOCK_SIZE] = {0x80, };
 	uint64_t bit_count = m_count << 3;				// *8することでビット数になおす

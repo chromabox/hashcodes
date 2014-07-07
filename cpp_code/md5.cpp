@@ -200,7 +200,7 @@ void md5::process()
 }
 
 // ハッシュの結果を出力する。outはDIGEST_LENGTH以上でなければならない
-bool md5::final(std::uint8_t* out)
+bool md5::final(uint8_t* out)
 {
 	uint32_t i;	
 	uint32_t* dst = reinterpret_cast<uint32_t *>(out);
@@ -247,7 +247,7 @@ bool md5::final(std::uint8_t* out)
 }
 
 // ハッシュの結果を文字列型で出力する。
-bool md5::final(std::string &ostr)
+bool md5::final(string &ostr)
 {
 	uint8_t digest[DIGEST_LENGTH];
 	bool ret = final(digest);

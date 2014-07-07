@@ -27,7 +27,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 //
-#include <cstdint>
 #include <string>
 
 #include "sha1.hpp"
@@ -43,7 +42,7 @@ public:
 	hmac(){};
 	virtual ~hmac(){};
 	
-	static void create_digest(const void* data,size_t datalen,const void* key,size_t keylen,std::uint8_t *resdigest);
+	static void create_digest(const void* data,size_t datalen,const void* key,size_t keylen,uint8_t *resdigest);
 	static void create_digest(const void* data,size_t datalen,const void* key,size_t keylen,std::string &resdigest);
 };
 
@@ -58,7 +57,7 @@ void hmac<_Thash>::create_digest(const void* data,size_t datalen,const void* key
 
 // HMACダイジェストを計算して結果をuint8の配列で返す
 template<class _Thash>
-void hmac<_Thash>::create_digest(const void* data,size_t datalen,const void* key,size_t keylen,std::uint8_t *resdigest)
+void hmac<_Thash>::create_digest(const void* data,size_t datalen,const void* key,size_t keylen,uint8_t *resdigest)
 {
 	using namespace std;
 	int i;

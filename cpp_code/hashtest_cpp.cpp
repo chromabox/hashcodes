@@ -3,8 +3,6 @@
 #include <iomanip>
 #include <cstring>
 #include <cstdio>
-#include "sha1.hpp"
-#include "md5.hpp"
 #include "hmac.hpp"
 
 // チェックして文字列化して出力

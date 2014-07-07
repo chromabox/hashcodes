@@ -29,8 +29,8 @@
 
 
 
-#include <cstdint>
 #include <string>
+#include "typedef.hpp"
 
 
 class crypto_hash
@@ -39,17 +39,17 @@ public:
 	
 	virtual bool reset()=0;
 	virtual bool update(const void* data,std::size_t len)=0;
-	virtual bool final(std::uint8_t* out)=0;
+	virtual bool final(uint8_t* out)=0;
 	virtual bool final(std::string &ostr)=0;
 	
-	inline virtual std::size_t get_digest_size()=0;
-	inline virtual std::size_t get_block_size()=0;
+	inline virtual size_t get_digest_size()=0;
+	inline virtual size_t get_block_size()=0;
 	
 	virtual ~crypto_hash(){};
 };
 
 
-void tostring_digest(std::uint8_t* out,std::size_t size,std::string &dst);
+void tostring_digest(uint8_t* out,size_t size,std::string &dst);
 
 #endif // __CRYPTO_HASH_H__
 
