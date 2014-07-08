@@ -2,7 +2,7 @@
 #define __TYPEDEF_H__
 
 //
-// ƒTƒCƒYŒ^’è‹`—pƒwƒbƒ_
+// ã‚µã‚¤ã‚ºåž‹å®šç¾©ç”¨ãƒ˜ãƒƒãƒ€
 //
 // The MIT License (MIT)
 //
