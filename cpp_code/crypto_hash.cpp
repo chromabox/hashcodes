@@ -49,3 +49,50 @@ void tostring_digest(uint8_t* out,size_t size,std::string &dst)
 	dst = stream.str();
 }
 
+
+bool crypto_hash::reset()
+{
+	m_ix = 0;
+	m_corrupted = false;
+	m_count = 0;
+	return true;
+}
+
+// ハッシュ関数にデータを追加する
+bool crypto_hash::update(const void *data,size_t len)
+{
+	uint8_t const *dt = static_cast<uint8_t const*>(data);
+	uint8_t *blk = get_blk();
+	size_t maxblk = get_block_size();
+
+	if(m_corrupted)		return false;
+	
+	for(size_t i=0;i<len;i++){
+		blk[m_ix++] = dt[i] & 0xFF;
+		m_count ++;
+		if(m_count == 0){
+			// oh my god!!!!
+			m_corrupted = true;
+			return false;
+		}
+		// ブロックサイズに達したら計算
+		if(m_ix == maxblk){
+			process();
+		}
+	}
+	return true;
+}
+
+// ハッシュの結果を文字列型で出力する。
+bool crypto_hash::final(std::string &ostr)
+{
+	using namespace std;
+	
+	uint8_t *digest = get_digest_buffer();
+	bool ret = final(digest);
+
+	if(! ret) return false;
+	tostring_digest(digest,get_digest_size(),ostr);
+	return ret;
+}
+

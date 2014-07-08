@@ -111,32 +111,8 @@ bool sha1::reset()
 	m_hash[3] = 0x10325476UL;
 	m_hash[4] = 0xc3d2e1f0UL;
 
-	m_ix = 0;
-	m_corrupted = false;
-	m_count = 0;
 	memset(m_blk,0,sizeof(BLOCK_SIZE));
-	return true;
-}
-
-// ハッシュ関数にデータを追加する
-bool sha1::update(const void *data,size_t len)
-{
-	uint8_t const *dt = static_cast<uint8_t const*>(data);
-	if(m_corrupted)		return false;
-	
-	for(size_t i=0;i<len;i++){
-		m_blk[m_ix++] = dt[i] & 0xFF;
-		m_count ++;
-		if(m_count == 0){
-			// oh my god!!!!
-			m_corrupted = true;
-			return false;
-		}
-		// ブロックサイズに達したら計算
-		if(m_ix == BLOCK_SIZE){
-			process();
-		}
-	}
+	crypto_hash::reset();
 	return true;
 }
 
@@ -219,18 +195,4 @@ bool sha1::final(uint8_t* out)
 	reset();
 	return true;
 }
-
-// ハッシュの結果を文字列型で出力する。
-bool sha1::final(std::string &ostr)
-{
-	uint8_t digest[DIGEST_LENGTH];
-	bool ret = final(digest);
-
-	if(! ret) return false;
-	tostring_digest(digest,DIGEST_LENGTH,ostr);
-	return ret;
-}
-
-
-
 

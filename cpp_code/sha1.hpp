@@ -38,28 +38,30 @@ public:
 		DIGEST_LENGTH	= 20,
 		BLOCK_SIZE		= 64,
 	};	
+private:
+	uint8_t		m_digest[DIGEST_LENGTH];	// Digest buffer
+	uint32_t	m_hash[DIGEST_LENGTH/4];	// Hash値
+	uint8_t		m_blk[BLOCK_SIZE];			// Block
 	
+public:
 	sha1();
 	virtual ~sha1();
 	
 	virtual bool reset();
-	virtual bool update(const void* data,size_t len);
+	using crypto_hash::final;
 	virtual bool final(uint8_t* out);
-	virtual bool final(std::string &ostr);
-
+	
 	inline virtual size_t get_digest_size()
 	{	return DIGEST_LENGTH; };
 	inline virtual size_t get_block_size()
 	{	return BLOCK_SIZE; };
 	
-private:
-	void process();
-	
-	bool		m_corrupted;				// 壊れフラグ
-	uint64_t	m_count;					// 総データ長(Byte数)
-	size_t		m_ix	;					// Block用Index
-	uint32_t	m_hash[DIGEST_LENGTH/4];	// Hash値
-	uint8_t		m_blk[BLOCK_SIZE];			// Block
+protected:
+	virtual void process();
+	inline virtual uint8_t* get_blk()
+	{	return m_blk;};
+	inline virtual uint8_t* get_digest_buffer()
+	{	return m_digest;};
 };
 
 	
