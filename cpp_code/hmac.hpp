@@ -44,6 +44,18 @@ public:
 	
 	static void create_digest(const void* data,size_t datalen,const void* key,size_t keylen,uint8_t *resdigest);
 	static void create_digest(const void* data,size_t datalen,const void* key,size_t keylen,std::string &resdigest);
+	
+	static size_t get_digest_size(){
+		return _Thash::DIGEST_LENGTH;
+	}
+	static const std::string get_name()
+	{
+		std::string name;
+		_Thash	hasher;
+		name = "HMAC-";
+		name += hasher.get_name();
+		return name;
+	}
 };
 
 // HMACダイジェストを計算して結果をstringで返す

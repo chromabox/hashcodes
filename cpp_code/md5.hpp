@@ -60,6 +60,9 @@ public:
 	{	return DIGEST_LENGTH; };
 	inline virtual size_t get_block_size()
 	{	return BLOCK_SIZE; };
+	inline virtual const std::string get_name()
+	{	return "MD5";};
+	
 protected:
 	virtual void process();
 	inline virtual uint8_t* get_blk()

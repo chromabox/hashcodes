@@ -55,6 +55,8 @@ public:
 	{	return DIGEST_LENGTH; };
 	inline virtual size_t get_block_size()
 	{	return BLOCK_SIZE; };
+	inline virtual const std::string get_name()
+	{	return "SHA1";};
 	
 protected:
 	virtual void process();
